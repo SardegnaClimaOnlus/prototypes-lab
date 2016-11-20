@@ -1,0 +1,62 @@
+<script src="https://raw.githack.com/leighquince/Chart.js/master/Chart.js"></script>
+<canvas id="line-bar" width="400" height="200"></canvas>
+<style>
+.container {
+  width: 80%;
+  margin: 15px auto;
+}
+</style>
+<body>
+<script>
+
+//templateInterpolators changed to [[ and ]] or these could be passed as options when generating the graph
+Chart.defaults.global.templateInterpolators = {
+    start: "[[",
+    end: "]]"
+};
+Chart.defaults.global.scaleLabel = "[[= value ]]";
+Chart.defaults.global.tooltipTemplate = "[[if (label){]][[= label ]]: [[}]][[= value ]]";
+Chart.defaults.global.multiTooltipTemplate = "[[= value ]]";
+
+
+var data = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [{
+        label: "My First dataset",
+        //new option, barline will default to bar as that what is used to create the scale
+        type: "line",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: [65, 20, 43, 81, 56, 55, 40]
+    }, {
+        label: "My First dataset",
+        //new option, barline will default to bar as that what is used to create the scale
+        type: "bar",
+        fillColor: "rgba(220,20,220,0.2)",
+        strokeColor: "rgba(220,20,220,1)",
+        pointColor: "rgba(220,20,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: [32, 25, 43, 22, 12, 92, 33]
+    }]
+};
+
+
+
+
+
+
+//canvases
+var lineBar = document.getElementById("line-bar").getContext("2d");
+
+
+//charts
+
+var myLineBarChart = new Chart(lineBar).Overlay(data);
+
+</script></body>

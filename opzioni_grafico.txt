@@ -1,0 +1,42 @@
+var options = {
+ 
+    // {boolean} Indica se visualizzare le linee della griglia
+    scaleShowGridLines : true,
+     
+    // {string} Colore delle linee della griglia
+    scaleGridLineColor : "rgba(0,0,0,.05)",
+     
+    // {number} Spessore delle linee della griglia
+    scaleGridLineWidth : 1,
+     
+    // {boolean} Indica se le linee tra i punti sono curve (di Bezier)
+    bezierCurve : true,
+     
+    // {number} Indica la tensione delle curve tra i punti
+    bezierCurveTension : 0.4,
+     
+    // {boolean} Indica se mostrare un pallino per ogni punto
+    pointDot : true,
+     
+    // {number} Definisce l’arrotondamento di ciascun punto
+    pointDotRadius : 4,
+     
+    // {number} Definisce lo spessore di ciascun punto 
+    pointDotStrokeWidth : 1,
+     
+    // {number} Aumenta lo spazio sensibile al click attorno a ciascun punto 
+    pointHitDetectionRadius : 20,
+     
+    // {boolean} Indica se visualizzare il tratto per i dataset 
+    datasetStroke : true,
+     
+    // {number} Indica lo spessore del tratto per i dataset 
+    datasetStrokeWidth : 2,
+     
+    // {boolean} Indica se ciascun dataset deve essere riempito con un colore 
+    datasetFill : true,
+     
+    // {string} Definisce il template per il markup della legenda del grafico
+    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.len>h; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+};
+

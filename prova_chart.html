@@ -1,0 +1,114 @@
+
+<canvas id="myChart" width="1000" height="400"></canvas>
+<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+
+    var jsonData = $.ajax({
+      url: 'http://www.sardegna-clima.it/forecast/stations/quartucciu.json',
+      dataType: 'json',
+    }).done(function (results) {
+
+      // Split timestamp and data into separate arrays
+      var labels = [], data=[], data2=[], data3=[] ;
+      results["values"].forEach(function(packet) {
+        labels.push(String(packet.hour));
+        data.push(parseFloat(packet.t));
+        data2.push(parseFloat(packet.rh));
+        data3.push(parseFloat(packet.raintot));
+       //  console.log(labels);
+       }); //function
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [
+      {
+        label: "Pioggia [mm]",
+        backgroundColor: "rgba(75,192,192,0.5)",
+        borderColor: "rgba(75,192,192,1)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        yAxisID: "y-axis-0",
+        data: data3
+      },
+      {
+        label: "Temperatura [C]",
+        type: 'line',
+        backgroundColor: 'rgba(255, 99, 132, 0.1)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        strokeColor: "rgba(255,187,205,1)",
+        pointColor: "rgba(255,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(255,187,205,1)",
+        yAxisID: "y-axis-1",
+        data: data
+      }
+ //     {
+ //       label: "Umidita' [%]",
+ //       type: 'line',
+ //       backgroundColor: 'rgba(255, 250, 132, 0.1)',
+ //       borderColor: 'rgba(255, 250, 132, 1)',
+ //       strokeColor: "rgba(151,250,205,1)",
+ //       pointColor: "rgba(151,250,205,1)",
+ //       pointStrokeColor: "#fff",
+ //       pointHighlightFill: "#fff",
+//        pointHighlightStroke: "rgba(151,250,205,1)",
+//        yAxisID: "y-axis-1",
+ //       data: data2
+ //     }
+
+    ]
+
+    }, //data
+
+      options: {
+          tooltips: {
+          mode: 'label'
+           },
+          responsive: true,
+          scales: {
+      		yAxes: [{
+                         stacked: true,
+       	 		 position: "left",
+       			 "id": "y-axis-0",
+			 scaleLabel: {
+ 			       display: true,
+ 			       labelString: "Pioggia [mm]"
+  			    },
+			 ticks: {
+             		     min: 0,
+             		     max: 5,
+               		     stepSize: 1
+          			}
+     			 }, {
+			
+       			 position: "right",
+        		 "id": "y-axis-1",
+			 scaleLabel: {
+ 			       display: true,
+ 			       labelString: "Temperatura [C]"
+  			    },
+                         ticks: {
+               		     stepSize: 10
+          			}
+
+      			}] //axes
+   		 } //scales
+ 	} //options
+
+}); //var
+
+
+}); // results
+
+</script>
+
+
+
